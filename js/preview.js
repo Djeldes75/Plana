@@ -49,6 +49,7 @@ function updatePreview() {
   const small = render(fn, o, maxW * dpr);
   pv.width = small.width; pv.height = small.height; pv.style.width = maxW + "px";
   pv.getContext("2d").drawImage(small, 0, 0);
+  if (typeof saveSettings === "function") saveSettings();   // recuerda lo que elegiste
 
   const fixed = ["grid", "dotted", "blank"].includes(state.style);
   document.getElementById("spacingVal").textContent = o.spacing;

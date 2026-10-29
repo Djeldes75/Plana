@@ -76,6 +76,42 @@ function applyUI() {
   updatePreview();
 }
 
+// RECORDAR OPCIONES
+// Se guardan en la tablet (localStorage) cada vez que cambias algo, y se cargan al abrir.
+// No se guardan las cosas de cada cuaderno: tema, título y subtítulo de la portada, número inicial y nombre del archivo.
+const SAVE_KEY = "settings";
+const SAVE_FIELDS = { spacing: "value", header: "checked", margin: "checked", cover: "checked", index: "checked",
+                      pages: "value", coverName: "checked", coverNameText: "value", coverYear: "checked" };
+const VALID = {
+  device: v => DEVICES.some(d => d.id === v), style: v => STYLES.includes(v), theme: v => v in THEMES,
+  accent: v => /^#[0-9a-f]{6}$/i.test(v), lang: v => v in LANGS, ui: v => v in UI,
+  orient: v => v === "portrait" || v === "landscape",
+  coverDesign: v => ["band", "frame", "block", "minimal"].includes(v), coverMode: v => v === "separate" || v === "inside",
+};
+function loadSettings() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SAVE_KEY)); } catch (e) { return; }
+  if (!saved || saved.v !== 1) return;
+  // solo se acepta lo que tiene sentido: si algo está dañado, se ignora y queda lo de fábrica
+  for (const k in VALID) if (typeof saved.state?.[k] === "string" && VALID[k](saved.state[k])) state[k] = saved.state[k];
+  for (const [id, prop] of Object.entries(SAVE_FIELDS)) {
+    const val = saved.fields?.[id], el = document.getElementById(id);
+    if (prop === "checked" && typeof val === "boolean") el.checked = val;
+    if (prop === "value" && typeof val === "string" && val.length <= 40) el.value = val;
+  }
+}
+function saveSettings() {
+  const data = { v: 1, state: {}, fields: {} };
+  for (const k in VALID) data.state[k] = state[k];
+  for (const [id, prop] of Object.entries(SAVE_FIELDS)) data.fields[id] = document.getElementById(id)[prop];
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch (e) { /* sin almacenamiento: no pasa nada */ }
+}
+loadSettings();
+document.getElementById("resetBtn").onclick = () => {
+  try { localStorage.removeItem(SAVE_KEY); } catch (e) { /* nada */ }
+  location.reload();
+};
+
 const sel = document.getElementById("device");
 const groups = {};
 DEVICES.forEach(d => {
@@ -86,7 +122,7 @@ sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
 // Número de versión (abajo del idioma): sirve para saber si ya tienes la última
-const APP_VERSION = "2.2.0";
+const APP_VERSION = "2.3.0";
 document.getElementById("ver").textContent = "v" + APP_VERSION;
 
 // Botón de tema: luna = pasar a oscuro, sol = pasar a claro

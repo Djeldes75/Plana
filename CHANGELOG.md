@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0 — 2026-10-29
+- Remembers your options (tablet, sheet type, spacing, paper, colors, extras, pages, your name) between visits.
+- Per-notebook things are not remembered: subject, cover title/subtitle, start number, file name.
+- Damaged or tampered saved data is ignored safely.
+- "Reset to default options" button.
+
 ## 2.2.0 — 2026-10-29
 - Dark theme for the app ("night blue"). Follows the tablet/PC setting until you choose; the moon/sun button remembers your choice.
 - Version number shown under the language buttons.

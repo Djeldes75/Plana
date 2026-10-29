@@ -279,6 +279,22 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
     return { ok: a !== b && b0 !== b1 && saved === b && document.documentElement.dataset.theme === a };
   });
   ok('El botón de tema cambia entre claro y oscuro y lo recuerda', th.ok);
+  // ---------- Recordar opciones ----------
+  await p.evaluate(() => { state.style = 'grid'; state.device = 's9'; state.accent = '#123abc';
+    document.getElementById('spacing').value = '6.5'; document.getElementById('subject').value = 'Química'; updatePreview(); });
+  await p.reload(); await p.waitForTimeout(600);
+  const kept = await p.evaluate(() => ({ style: state.style, device: state.device, accent: state.accent,
+    sp: document.getElementById('spacing').value, subj: document.getElementById('subject').value, sel: document.getElementById('device').value }));
+  ok('Recuerda tus opciones al volver a abrir la app', kept.style === 'grid' && kept.device === 's9' && kept.accent === '#123abc' && kept.sp === '6.5' && kept.sel === 's9', JSON.stringify(kept));
+  ok('No recuerda lo de cada cuaderno (el tema escrito)', kept.subj === '', kept.subj);
+  // datos guardados dañados o con trampas: se ignoran sin errores
+  await p.evaluate(() => localStorage.setItem('settings', JSON.stringify({ v: 1, state: { device: '<img src=x>', accent: 'red;}', style: 'grid' }, fields: { spacing: 'x'.repeat(500), cover: 'yes' } })));
+  await p.reload(); await p.waitForTimeout(600);
+  const bad = await p.evaluate(() => ({ device: state.device, accent: state.accent, style: state.style, sp: document.getElementById('spacing').value.length }));
+  ok('Si lo guardado está dañado, lo ignora y usa lo de fábrica', bad.device === 's10plus' && /^#[0-9a-f]{6}$/i.test(bad.accent) && bad.style === 'grid' && bad.sp < 10, JSON.stringify(bad));
+  await p.evaluate(() => document.getElementById('resetBtn').click()); await p.waitForTimeout(700);
+  const reset = await p.evaluate(() => ({ style: state.style }));
+  ok('El botón "Volver a las opciones de fábrica" funciona', reset.style === 'lined', JSON.stringify(reset));
   ok('La política de seguridad (CSP) no bloquea nada de la app', !csp.length, csp.slice(0, 3).join(' | '));
   ok('Cero errores en la consola durante todas las pruebas', !errs.length, errs.slice(0, 3).join(' | '));
   await b.close(); srv.close();
