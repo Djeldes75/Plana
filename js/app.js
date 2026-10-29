@@ -85,6 +85,10 @@ DEVICES.forEach(d => {
 sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
+// Número de versión (abajo del idioma): sirve para saber si ya tienes la última
+const APP_VERSION = "2.1.2";
+document.getElementById("ver").textContent = "v" + APP_VERSION;
+
 accents();
 document.getElementById("backToPage").onclick = () => { state.previewPage = "page"; updatePreview(); window.scrollTo({ top: 0, behavior: "smooth" }); };
 // al marcar "Portada", la mostramos de una vez para que se vean sus opciones
