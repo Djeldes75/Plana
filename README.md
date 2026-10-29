@@ -5,7 +5,7 @@
 # Plantillas de Domi
 
 **Notebook templates for Samsung Notes, sized to the real screen of your Galaxy Tab.**
-Lined, grid, dotted, Cornell and language-learning pages — as a sharp vector PDF, ready to import.
+Lined, grid, dotted, Cornell and language-learning pages - as a sharp vector PDF, ready to import.
 
 [**Open the app →**](https://djeldes75.github.io/plantillas/)
 
