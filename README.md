@@ -1,22 +1,29 @@
 <div align="center">
 
-<img src="icons/icon-192.png" alt="" width="88" height="88">
+<a href="https://djeldes75.github.io/plantillas/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.png">
+  <img src="docs/banner-light.png" alt="Plantillas de Domi - notebook templates sized to your tablet's real screen" width="100%">
+</picture>
+</a>
 
-# Plantillas de Domi
+<br>
 
-**Notebook templates for Samsung Notes, sized to the real screen of your Galaxy Tab.**
-Lined, grid, dotted, Cornell and language-learning pages - as a sharp vector PDF, ready to import.
+[![Open the app](https://img.shields.io/badge/Open%20the%20app-3E9A86?style=for-the-badge&logoColor=white)](https://djeldes75.github.io/plantillas/)
+&nbsp;
+[![Tests and deploy](https://img.shields.io/github/actions/workflow/status/Djeldes75/plantillas/ci.yml?branch=main&style=for-the-badge&label=tests)](https://github.com/Djeldes75/plantillas/actions/workflows/ci.yml)
+&nbsp;
+[![License: MIT](https://img.shields.io/badge/license-MIT-5b6b80?style=for-the-badge)](LICENSE)
 
-[**Open the app →**](https://djeldes75.github.io/plantillas/)
+**Installable** · **Works offline** · **No account, no tracking** · **English · Español · Lietuvių**
 
-[![Tests and deploy](https://github.com/Djeldes75/plantillas/actions/workflows/ci.yml/badge.svg)](https://github.com/Djeldes75/plantillas/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-3E9A86.svg)](LICENSE)
-![Installable PWA](https://img.shields.io/badge/PWA-installable-3E9A86.svg)
-![Works offline](https://img.shields.io/badge/works-offline-3E9A86.svg)
-![No tracking](https://img.shields.io/badge/tracking-none-3E9A86.svg)
+</div>
 
-<img src="docs/screenshots/app-light.png" alt="Plantillas de Domi on a computer: options on both sides, live page preview in the middle" width="900">
+<br>
 
+<div align="center">
+<img src="docs/demo.gif" alt="Demo: switching sheet styles, paper colour, accent, spacing, template language and dark theme" width="900">
+<br><sub>Pick a style, see it live, download.</sub>
 </div>
 
 ## Why
@@ -30,7 +37,7 @@ imported into Samsung Notes fills the screen edge to edge and the line spacing i
 | | |
 |---|---|
 | **6 sheet styles** | Lined, grid, dotted, blank, Cornell (cues + notes + summary) and language (notes + new words + phrases) |
-| **Real tablet sizes** | Galaxy Tab S9 / S9+ / S9 Ultra, S10+ / S10 Ultra, S11 / S11 Ultra, S12+ / S12 Ultra, and A4 — portrait or landscape |
+| **Real tablet sizes** | Galaxy Tab S9 / S9+ / S9 Ultra, S10+ / S10 Ultra, S11 / S11 Ultra, S12+ / S12 Ultra, and A4 - portrait or landscape |
 | **Your look** | White, sepia, gray or dark paper; any accent colour; line spacing from 5 to 12 mm |
 | **Full notebooks** | Optional cover (4 designs), contents page and page numbers that can start at any number to continue a notebook |
 | **Sharp at any zoom** | Hand-written vector PDF with vector text (Inter); single-page PNG export too |
@@ -44,12 +51,22 @@ imported into Samsung Notes fills the screen edge to edge and the line spacing i
 
 <table>
 <tr>
-<td width="62%"><img src="docs/screenshots/app-dark.png" alt="Dark theme on a computer"></td>
-<td width="38%"><img src="docs/screenshots/app-tablet.png" alt="Portrait layout on a tablet: big preview on top, options below"></td>
+<td width="64%" valign="middle">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/app-dark.png">
+  <img src="docs/screenshots/app-light.png" alt="The app on a computer: options on both sides, live preview in the middle">
+</picture>
+</td>
+<td width="36%" valign="middle">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/tablet-dark.png">
+  <img src="docs/screenshots/tablet-light.png" alt="The app on a tablet in portrait: big preview on top, options below">
+</picture>
+</td>
 </tr>
 <tr>
-<td align="center"><sub>Dark theme</sub></td>
-<td align="center"><sub>Tablet, portrait</sub></td>
+<td align="center"><sub>Computer - follows your light / dark theme</sub></td>
+<td align="center"><sub>Galaxy Tab, portrait</sub></td>
 </tr>
 </table>
 
@@ -63,12 +80,12 @@ works offline and updates itself.
 
 ## Use it with Samsung Notes
 
-1. In Samsung Notes: **☰ → Settings → Default note style** — set it to the same orientation as your notebook (portrait or landscape).
+1. In Samsung Notes: **☰ → Settings → Default note style** - set it to the same orientation as your notebook (portrait or landscape).
 2. In the app, pick your tablet, sheet style and options, then **Download notebook (PDF)**.
 3. In Samsung Notes: **⋮ → Import PDF** and choose the file.
 
 **Continue a notebook that ran out:** set *Start numbering at* to the next page (e.g. 61), untick cover and
-contents, download, then import the PDF **inside** the existing note — the pages are added at the end.
+contents, download, then import the PDF **inside** the existing note - the pages are added at the end.
 
 ## How it works
 
@@ -99,7 +116,7 @@ sw.js                   offline cache
 manifest.json, icons/   installable app
 tests/verify.js         automatic test suite
 tools/build-single.js   builds a one-file version into dist/
-docs/screenshots/       images used in this README
+docs/                   banner, demo GIF and screenshots for this README
 ```
 
 ## Development
@@ -133,5 +150,5 @@ See [SECURITY.md](SECURITY.md) to report a problem privately.
 ## License
 
 App code: [MIT](LICENSE) © 2026 Domi.
-Inter font outlines: SIL Open Font License 1.1 — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Inter font outlines: SIL Open Font License 1.1 - see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 Changes: [CHANGELOG.md](CHANGELOG.md).
