@@ -205,3 +205,9 @@ button.big:active { transform: scale(.98); }
   .dock #msg { grid-column: 1 / -1; margin: 0; }
   main { padding-bottom: 110px; }
 }
+
+/* horizontal: columnas angostas, los 7 círculos de color caben en una fila */
+@media not all and (orientation: portrait) and (min-width: 1000px) {
+  #accents { gap: 7px; flex-wrap: nowrap; }
+  #accents .sw, #accents .picker { width: 34px; height: 34px; flex: none; }
+}
