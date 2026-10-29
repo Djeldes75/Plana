@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1 — 2026-10-29
+- Shorter help texts (orientation, continue a notebook); removed the template-language and cover-name hints.
+- Spanish: "Horizontal" instead of "Horizontal (acostada)".
+
 ## 2.1.0 — 2026-10-29
 - New look: "cloud blue" colors, dotted-notebook background, each step in its own card.
 - Landscape: the sheet in the middle, options on both sides.

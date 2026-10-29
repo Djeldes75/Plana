@@ -198,8 +198,8 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   const yr = await p.evaluate(() => { document.getElementById('coverYear').checked = true; document.getElementById('coverYearText').value = '';
     return options().coverYearText; });
   ok('Año vacío = año actual (' + new Date().getFullYear() + ')', yr === String(new Date().getFullYear()), yr);
-  const hints = await p.evaluate(() => ['es','en','lt'].every(l => UI[l].h_orient && UI[l].h_cname && UI[l].h_cyear && UI[l].ph_cname));
-  ok('Avisos nuevos (orientación, nombre, año) en los 3 idiomas', hints);
+  const hints = await p.evaluate(() => ['es','en','lt'].every(l => UI[l].h_orient && UI[l].h_cyear && UI[l].ph_cname));
+  ok('Avisos (orientación, año) en los 3 idiomas', hints);
   const contrast = await p.evaluate(() => [onColor('#FFE600'), onColor('#1A237E')]);
   ok('Portada Bloque: texto oscuro en color claro y blanco en color oscuro', contrast[0] === '#222222' && contrast[1] === '#FFFFFF', contrast.join(' / '));
 

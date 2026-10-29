@@ -36,7 +36,6 @@ function updatePreview() {
   document.getElementById("coverNameText").style.display = o.coverName ? "" : "none";
   document.getElementById("coverYearText").style.display = o.coverYear ? "" : "none";
   document.getElementById("coverYearText").nextElementSibling.style.display = o.coverYear ? "" : "none";
-  document.getElementById("coverNameText").nextElementSibling.style.display = o.coverName ? "" : "none";
   document.getElementById("coverYearText").placeholder = String(new Date().getFullYear());
 
   const fn = { cover: drawCover, index: drawContents, page: drawPage }[state.previewPage];
