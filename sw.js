@@ -1,6 +1,6 @@
 // Service worker: guarda la app en la tablet para que funcione sin internet.
 // Sube VERSION cada vez que publiques cambios, así la tablet descarga la nueva.
-const VERSION = "plantillas-v5";
+const VERSION = "plantillas-v6";
 const FILES = [
   "./", "./index.html", "./manifest.json", "./css/styles.css",
   "./js/data.js", "./js/geometry.js", "./js/font.js", "./js/text.js",
@@ -22,7 +22,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== self.location.origin) return;
   e.respondWith(
-    fetch(e.request)
+    fetch(e.request, { cache: "no-cache" })   // pregunta siempre si hay versión nueva
       .then(r => { if (r.ok) { const copy = r.clone(); caches.open(VERSION).then(c => c.put(e.request, copy)); } return r; })
       .catch(() => caches.match(e.request).then(r => r || caches.match("./index.html")))
   );
