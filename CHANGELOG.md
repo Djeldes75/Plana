@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.5.1 - 2026-10-29
+- Repository renamed to `Plana`; new address https://djeldes75.github.io/Plana/ (links updated).
+
 ## 2.5.0 - 2026-10-29
 - New name: **Plana** (same in English, Spanish and Lithuanian), signed "by Domi". The web address stays the same.
 

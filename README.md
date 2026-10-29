@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://djeldes75.github.io/plantillas/">
+<a href="https://djeldes75.github.io/Plana/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.png">
   <img src="docs/banner-light.png" alt="Plana - notebook templates sized to your tablet's real screen" width="100%">
@@ -9,9 +9,9 @@
 
 <br>
 
-[![Open the app](https://img.shields.io/badge/Open%20the%20app-3E9A86?style=for-the-badge&logoColor=white)](https://djeldes75.github.io/plantillas/)
+[![Open the app](https://img.shields.io/badge/Open%20the%20app-3E9A86?style=for-the-badge&logoColor=white)](https://djeldes75.github.io/Plana/)
 &nbsp;
-[![Tests and deploy](https://img.shields.io/github/actions/workflow/status/Djeldes75/plantillas/ci.yml?branch=main&style=for-the-badge&label=tests)](https://github.com/Djeldes75/plantillas/actions/workflows/ci.yml)
+[![Tests and deploy](https://img.shields.io/github/actions/workflow/status/Djeldes75/Plana/ci.yml?branch=main&style=for-the-badge&label=tests)](https://github.com/Djeldes75/Plana/actions/workflows/ci.yml)
 &nbsp;
 [![License: MIT](https://img.shields.io/badge/license-MIT-5b6b80?style=for-the-badge)](LICENSE)
 
@@ -75,7 +75,7 @@ imported into Samsung Notes fills the screen edge to edge and the line spacing i
 The app is a Progressive Web App: it installs from the browser, gets its own icon, opens full screen,
 works offline and updates itself.
 
-- **Tablet (Android):** open the [app](https://djeldes75.github.io/plantillas/) in Chrome → **⋮ → Add to home screen → Install**.
+- **Tablet (Android):** open the [app](https://djeldes75.github.io/Plana/) in Chrome → **⋮ → Add to home screen → Install**.
 - **Computer (Chrome / Edge):** open the app → click the **install icon** at the right of the address bar.
 
 ## Use it with Samsung Notes

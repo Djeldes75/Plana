@@ -1,11 +1,11 @@
 {
   "name": "plana",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "private": true,
   "description": "Notebook templates (PDF/PNG) for Samsung Notes and other note apps. Runs entirely in the browser.",
   "license": "MIT",
-  "homepage": "https://djeldes75.github.io/plantillas/",
-  "repository": { "type": "git", "url": "https://github.com/Djeldes75/plantillas.git" },
+  "homepage": "https://djeldes75.github.io/Plana/",
+  "repository": { "type": "git", "url": "https://github.com/Djeldes75/Plana.git" },
   "author": "Domi (Djeldes75)",
   "scripts": {
     "test": "node tests/verify.js",
