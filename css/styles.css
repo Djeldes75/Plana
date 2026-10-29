@@ -1,0 +1,48 @@
+/* Plantillas de Domi — estilos de la interfaz */
+:root { --bg:#f6f5f2; --card:#fff; --ink:#24292f; --soft:#6b7480; --line:#e3e1dc; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); }
+header { padding:18px 20px 6px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap; }
+h1 { font-size:22px; margin:0; }
+header p { margin:4px 0 0; color:var(--soft); font-size:14px; }
+main { display:grid; grid-template-columns: minmax(280px, 380px) 1fr; gap:18px; padding:14px 20px 30px; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } }
+.panel { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; }
+.step { margin-bottom:16px; }
+.step > label, .step > .t { display:block; font-weight:600; font-size:14px; margin-bottom:6px; }
+.step .n { display:inline-block; width:20px; height:20px; border-radius:50%; background:var(--ink); color:#fff; font-size:12px; text-align:center; line-height:20px; margin-right:6px; }
+select, input[type=text], input[type=number] { width:100%; padding:10px; font-size:15px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); }
+.chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:8px 12px; font-size:14px; cursor:pointer; color:var(--ink); }
+.chip.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+.chip.small { padding:6px 10px; font-size:13px; }
+.row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+input[type=range] { width:100%; }
+.sw { width:30px; height:30px; border-radius:50%; border:3px solid #fff; box-shadow:0 0 0 1px var(--line); cursor:pointer; padding:0; }
+.sw.on { box-shadow:0 0 0 2px var(--ink); }
+.picker { position:relative; width:30px; height:30px; border-radius:50%; overflow:hidden; cursor:pointer;
+          background:conic-gradient(#e74c3c,#f1c40f,#2ecc71,#3498db,#9b59b6,#e74c3c); box-shadow:0 0 0 1px var(--line); border:3px solid #fff; }
+.picker.on { box-shadow:0 0 0 2px var(--ink); }
+.picker input { position:absolute; inset:-8px; width:46px; height:46px; opacity:0; cursor:pointer; }
+.themeSw { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:6px; vertical-align:-1px; box-shadow:0 0 0 1px rgba(0,0,0,.25); }
+.check { display:flex; align-items:center; gap:8px; font-size:14px; margin:6px 0; }
+.check input { width:18px; height:18px; }
+.hint { color:var(--soft); font-size:12px; margin-top:4px; }
+.fname { display:flex; align-items:center; border:1px solid var(--line); border-radius:10px; background:#fff; overflow:hidden; }
+.fname input { border:none; border-radius:0; }
+.fname span { padding:0 10px; color:var(--soft); font-size:14px; }
+.btns { display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+button.big { padding:13px; font-size:16px; font-weight:600; border-radius:12px; border:none; cursor:pointer; }
+.primary { background:var(--ink); color:#fff; }
+.secondary { background:#ece9e2; color:var(--ink); }
+.coverBar { display:flex; justify-content:space-between; align-items:center; gap:8px; background:#f3efe4; border-radius:10px; padding:10px 12px; margin-bottom:14px; font-size:14px; font-weight:600; }
+.coverBar[hidden] { display:none; }
+#msg { font-size:13px; margin-top:8px; min-height:18px; }
+.preview { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.preview canvas { max-width:100%; border-radius:8px; box-shadow:0 6px 24px rgba(0,0,0,.12); background:#fff; }
+.preview .cap { color:var(--soft); font-size:13px; }
+/* antes eran estilos dentro de las etiquetas (la política de seguridad no los permite) */
+.sub-label { margin-top: 12px; display: block; font-weight: 600; font-size: 14px; }
+.mt10 { margin-top: 10px; }
+.btn-full { width: 100%; margin-top: 10px; }
+.hint-shared { margin: -6px 0 16px; }
