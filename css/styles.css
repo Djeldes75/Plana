@@ -243,3 +243,38 @@ html[data-theme="dark"] .themeSw { box-shadow: 0 0 0 1px rgba(255,255,255,.35); 
   padding: 10px 14px; border-radius: 10px; cursor: pointer;
 }
 .linkBtn:hover { background: var(--tile); color: var(--ink); }
+
+/* ---------- PC (mouse): todo un poco más compacto ----------
+   En la tablet (dedo o S Pen) se queda grande; con mouse no hace falta tanto espacio. */
+@media (hover: hover) and (pointer: fine) {
+  body { font-size: 14.5px; }
+  header { padding: 16px 22px 4px; }
+  h1 { font-size: 24px; }
+  header p { font-size: 14px; }
+  .logo { width: 40px; height: 40px; }
+  .themeBtn { width: 40px; height: 40px; font-size: 18px; }
+  main { grid-template-columns: minmax(260px, 320px) minmax(0, 1fr) minmax(260px, 320px); gap: 18px; padding: 8px 22px 22px; }
+  .panel, #coverControls { gap: 10px; }
+  .step { padding: 12px 14px 11px; border-radius: 16px; }
+  .step > label:not(.check), .step > .t { font-size: 15px; margin-bottom: 9px; line-height: 24px; }
+  .step .n { width: 24px; height: 24px; font-size: 12px; margin-right: 8px; }
+  .hint { font-size: 12.5px; margin-top: 6px; }
+  select, input[type=text], input[type=number] { min-height: 40px; padding: 8px 12px; font-size: 14.5px; border-radius: 10px; }
+  .chips { gap: 6px; }
+  .chip { min-height: 38px; padding: 7px 12px; font-size: 14px; border-radius: 12px; }
+  .chip.small { min-height: 32px; padding: 5px 11px; font-size: 13px; }
+  #styles .chip { min-height: 62px; padding: 8px 4px; font-size: 13.5px; gap: 4px; }
+  .ico { width: 22px; height: 22px; }
+  #orient .ico { width: 18px; height: 18px; }
+  .sw, .picker { width: 30px; height: 30px; }
+  #accents .sw, #accents .picker { width: 30px; height: 30px; }
+  .check { min-height: 36px; font-size: 14px; gap: 10px; }
+  .check input { width: 19px; height: 19px; }
+  input[type=range] { height: 26px; }
+  .dock { padding: 11px 12px; border-radius: 16px; }
+  .dock .step { margin-bottom: 9px; }
+  .fname input { min-height: 40px; }
+  button.big { min-height: 44px; font-size: 14px; border-radius: 12px; }
+  .preview { gap: 10px; }
+  #pvTabs .chip { min-height: 32px; }
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 — 2026-10-29
+- Computer (mouse): more compact interface, so it fits at 100% zoom.
+- README with screenshots, badges and a guide; issue templates.
+
 ## 2.3.0 — 2026-10-29
 - Remembers your options (tablet, sheet type, spacing, paper, colors, extras, pages, your name) between visits.
 - Per-notebook things are not remembered: subject, cover title/subtitle, start number, file name.
