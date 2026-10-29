@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.5.0 - 2026-10-29
+- New name: **Plana** (same in English, Spanish and Lithuanian), signed "by Domi". The web address stays the same.
+
 ## 2.4.0 — 2026-10-29
 - Computer (mouse): more compact interface, so it fits at 100% zoom.
 - README with screenshots, badges and a guide; issue templates.

@@ -3,7 +3,7 @@
 <a href="https://djeldes75.github.io/plantillas/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/banner-dark.png">
-  <img src="docs/banner-light.png" alt="Plantillas de Domi - notebook templates sized to your tablet's real screen" width="100%">
+  <img src="docs/banner-light.png" alt="Plana - notebook templates sized to your tablet's real screen" width="100%">
 </picture>
 </a>
 

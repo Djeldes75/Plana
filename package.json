@@ -1,6 +1,6 @@
 {
-  "name": "plantillas-de-domi",
-  "version": "2.4.0",
+  "name": "plana",
+  "version": "2.5.0",
   "private": true,
   "description": "Notebook templates (PDF/PNG) for Samsung Notes and other note apps. Runs entirely in the browser.",
   "license": "MIT",

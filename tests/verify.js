@@ -1,5 +1,5 @@
-// Batería de pruebas de Plantillas de Domi. Uso: npm test  (o: node tests/verify.js)
-// Batería de pruebas de "Plantillas de Domi".
+// Batería de pruebas de Plana. Uso: npm test  (o: node tests/verify.js)
+// Batería de pruebas de "Plana".
 // Corre todo en un navegador real (Chromium) y reporta PASA / FALLA por prueba.
 const { chromium } = require('playwright');
 const fs = require('fs');

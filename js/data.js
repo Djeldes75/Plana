@@ -52,7 +52,7 @@ const LANGS = {
 // Textos DE LA APP (idioma de la interfaz)
 const UI = {
   es: {
-    title: "Plantillas de Domi", subtitle: "Crea cuadernos para tu tablet. Elige, mira la vista previa y descarga.",
+    title: "Plana", subtitle: "Crea cuadernos para tu tablet. Elige, mira la vista previa y descarga.",
     s_tablet: "Tu tablet", dev: "Hoja de {w} × {h} cm · {pw} × {ph} píxeles",
     s_orient: "Posición de la tablet", portrait: "Vertical", landscape: "Horizontal",
     s_style: "Tipo de hoja",
@@ -95,7 +95,7 @@ const UI = {
     making: "Creando el PDF…", done: "Listo: ", declined: "Descarga cancelada.", fail: "No se pudo descargar aquí.",
   },
   en: {
-    title: "Domi's Templates", subtitle: "Make notebooks for your tablet. Choose, check the preview and download.",
+    title: "Plana", subtitle: "Make notebooks for your tablet. Choose, check the preview and download.",
     s_tablet: "Your tablet", dev: "Page {w} × {h} cm · {pw} × {ph} pixels",
     s_orient: "Tablet orientation", portrait: "Portrait", landscape: "Landscape",
     s_style: "Page type",
@@ -138,7 +138,7 @@ const UI = {
     making: "Creating the PDF…", done: "Done: ", declined: "Download cancelled.", fail: "Download isn't available here.",
   },
   lt: {
-    title: "Domi šablonai", subtitle: "Kurkite sąsiuvinius savo planšetei. Pasirinkite, peržiūrėkite ir atsisiųskite.",
+    title: "Plana", subtitle: "Kurkite sąsiuvinius savo planšetei. Pasirinkite, peržiūrėkite ir atsisiųskite.",
     s_tablet: "Jūsų planšetė", dev: "Lapas {w} × {h} cm · {pw} × {ph} pikselių",
     s_orient: "Planšetės padėtis", portrait: "Vertikali", landscape: "Horizontali",
     s_style: "Lapo tipas",

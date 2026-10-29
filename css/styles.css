@@ -278,3 +278,6 @@ html[data-theme="dark"] .themeSw { box-shadow: 0 0 0 1px rgba(255,255,255,.35); 
   .preview { gap: 10px; }
   #pvTabs .chip { min-height: 32px; }
 }
+
+/* firma pequeña junto al nombre */
+h1 .by { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--soft); letter-spacing: 0; margin-left: 4px; vertical-align: 3px; }
