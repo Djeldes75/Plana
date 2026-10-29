@@ -4,6 +4,24 @@
 
 // 6. ARRANQUE: botones, idioma de la app y cambios
 // ---------------------------------------------------------------
+// Dibujitos pequeños (SVG) para los botones de tipo de hoja y orientación
+const ICONS = {
+  lined:    '<rect x="3" y="2" width="18" height="20" rx="2"/><path d="M6 8h12M6 12h12M6 16h12"/>',
+  grid:     '<rect x="3" y="2" width="18" height="20" rx="2"/><path d="M9 2v20M15 2v20M3 8.7h18M3 15.3h18"/>',
+  dotted:   '<rect x="3" y="2" width="18" height="20" rx="2"/><g class="fill"><circle cx="8" cy="7.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="7.5" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/><circle cx="8" cy="16.5" r="1"/><circle cx="12" cy="16.5" r="1"/><circle cx="16" cy="16.5" r="1"/></g>',
+  blank:    '<rect x="3" y="2" width="18" height="20" rx="2"/>',
+  cornell:  '<rect x="3" y="2" width="18" height="20" rx="2"/><path d="M3 6h18M9 6v10M3 16h18"/>',
+  language: '<rect x="3" y="2" width="18" height="20" rx="2"/><path d="M3 6h18M12 6v9M3 15h18M6 18.5h12"/>',
+  portrait: '<rect x="6" y="2" width="12" height="20" rx="2"/>',
+  landscape:'<rect x="2" y="6" width="20" height="12" rx="2"/>',
+};
+function icon(name) {
+  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("class", "ico"); s.setAttribute("aria-hidden", "true");
+  s.innerHTML = ICONS[name];
+  return s;
+}
+
 function chips(id, items, key, small) {
   const box = document.getElementById(id);
   box.innerHTML = "";
@@ -11,6 +29,7 @@ function chips(id, items, key, small) {
     const b = document.createElement("button");
     b.className = "chip" + (small ? " small" : "") + (state[key] === value ? " on" : "");
     if (dot) { const s = document.createElement("span"); s.className = "themeSw"; s.style.background = dot; b.appendChild(s); }
+    if (ICONS[value] && (key === "style" || key === "orient")) b.appendChild(icon(value));
     b.appendChild(document.createTextNode(text));
     b.onclick = () => { state[key] = value; if (key === "ui") applyUI(); else { buildChips(); updatePreview(); } };
     box.appendChild(b);
@@ -79,6 +98,13 @@ document.getElementById("dlPdf").onclick = makePdf;
 document.getElementById("dlPng").onclick = makePng;
 document.getElementById("dlCover").onclick = makeCoverPng;
 window.addEventListener("resize", updatePreview);
+// En vertical: tocar la hoja la agranda o la achica
+document.getElementById("preview").onclick = () => {
+  if (!window.matchMedia(STACKED).matches) return;
+  bigPreview = !bigPreview;
+  document.getElementById("previewArea").classList.toggle("big", bigPreview);
+  updatePreview();
+};
 applyUI();
 
 // Permiso de descargas dentro de Claude (si no existe, usamos la descarga normal)

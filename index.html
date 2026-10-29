@@ -15,15 +15,18 @@
 </head>
 <body>
 <header>
-  <div>
+  <div class="brand">
+    <img src="icons/icon-192.png" alt="" class="logo" width="44" height="44">
+    <div>
     <h1 data-t="title"></h1>
     <p data-t="subtitle"></p>
+    </div>
   </div>
   <div class="chips" id="appLang" aria-label="Language"></div>
 </header>
 
 <main>
-  <section class="panel" id="controls">
+  <section class="panel left" id="controls">
     <div class="step pg">
       <label for="device"><span class="n">1</span><span data-t="s_tablet"></span></label>
       <select id="device"></select>
@@ -52,35 +55,6 @@
       <label for="spacing"><span class="n">5</span><span data-t="s_spacing"></span>: <span id="spacingVal"></span> mm</label>
       <input type="range" id="spacing" min="5" max="12" step="0.5" value="8">
       <div class="hint" id="spacingHint"></div>
-    </div>
-
-    <div class="step pg">
-      <span class="t"><span class="n">6</span><span data-t="s_paper"></span></span>
-      <div class="chips" id="themes"></div>
-      <div class="hint" data-t="h_paper"></div>
-    </div>
-
-    <div class="step pg">
-      <span class="t"><span class="n">7</span><span data-t="s_accent"></span></span>
-      <div class="row" id="accents"></div>
-      <div class="hint" data-t="h_accent"></div>
-    </div>
-
-    <div class="step pg">
-      <span class="t"><span class="n">8</span><span data-t="s_extras"></span></span>
-      <label class="check"><input type="checkbox" id="header" checked> <span data-t="o_header"></span></label>
-      <input type="text" id="subject" maxlength="40">
-      <label class="check" id="marginRow"><input type="checkbox" id="margin" checked> <span data-t="o_margin"></span></label>
-      <label class="check"><input type="checkbox" id="cover"> <span data-t="o_cover"></span></label>
-      <label class="check"><input type="checkbox" id="index"> <span data-t="o_index"></span></label>
-    </div>
-
-    <div class="step pg">
-      <label for="pages"><span class="n">9</span><span data-t="s_pages"></span></label>
-      <input type="number" id="pages" min="1" max="100" value="60">
-      <label for="startNum" class="sub-label" data-t="s_start"></label>
-      <input type="number" id="startNum" min="1" max="9999">
-      <div class="hint" data-t="h_start"></div>
     </div>
 
     <div id="coverBar" class="coverBar" hidden>
@@ -119,6 +93,45 @@
       <div class="hint hint-shared" data-t="c_shared"></div>
     </div>
 
+  </section>
+
+  <section class="preview" id="previewArea">
+    <div class="chips" id="pvTabs"></div>
+    <canvas id="preview"></canvas>
+    <div class="cap" id="cap"></div>
+  </section>
+
+  <section class="panel right" id="controls2">
+    <div class="step pg">
+      <span class="t"><span class="n">6</span><span data-t="s_paper"></span></span>
+      <div class="chips" id="themes"></div>
+      <div class="hint" data-t="h_paper"></div>
+    </div>
+
+    <div class="step pg">
+      <span class="t"><span class="n">7</span><span data-t="s_accent"></span></span>
+      <div class="row" id="accents"></div>
+      <div class="hint" data-t="h_accent"></div>
+    </div>
+
+    <div class="step pg">
+      <span class="t"><span class="n">8</span><span data-t="s_extras"></span></span>
+      <label class="check"><input type="checkbox" id="header" checked> <span data-t="o_header"></span></label>
+      <input type="text" id="subject" maxlength="40">
+      <label class="check" id="marginRow"><input type="checkbox" id="margin" checked> <span data-t="o_margin"></span></label>
+      <label class="check"><input type="checkbox" id="cover"> <span data-t="o_cover"></span></label>
+      <label class="check"><input type="checkbox" id="index"> <span data-t="o_index"></span></label>
+    </div>
+
+    <div class="step pg">
+      <label for="pages"><span class="n">9</span><span data-t="s_pages"></span></label>
+      <input type="number" id="pages" min="1" max="100" value="60">
+      <label for="startNum" class="sub-label" data-t="s_start"></label>
+      <input type="number" id="startNum" min="1" max="9999">
+      <div class="hint" data-t="h_start"></div>
+    </div>
+
+    <div class="dock">
     <div class="step">
       <label for="fname"><span class="n" id="fnameNum">10</span><span data-t="s_fname"></span></label>
       <div class="fname"><input type="text" id="fname" maxlength="60" spellcheck="false"><span>.pdf</span></div>
@@ -132,12 +145,7 @@
       <div class="hint" data-t="h_png"></div>
     </div>
     <div id="msg"></div>
-  </section>
-
-  <section class="preview">
-    <div class="chips" id="pvTabs"></div>
-    <canvas id="preview"></canvas>
-    <div class="cap" id="cap"></div>
+    </div>
   </section>
 </main>
 

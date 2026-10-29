@@ -6,6 +6,10 @@
 // ---------------------------------------------------------------
 const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
 
+// Igual que en css/styles.css: vertical o pantalla angosta = hoja arriba y opciones abajo
+const STACKED = "(orientation: portrait), (max-width: 999px)";
+let bigPreview = false;
+
 function updatePreview() {
   const o = options(), P = pageSize(), t = T();
 
@@ -16,6 +20,7 @@ function updatePreview() {
   tabs.push(["page", t.tabPage]);
   if (!tabs.some(x => x[0] === state.previewPage)) state.previewPage = "page";
   chips("pvTabs", tabs, "previewPage", true);
+  document.getElementById("pvTabs").hidden = tabs.length < 2;   // con una sola pestaña no hace falta mostrarla
 
   // en la pestaña Portada, el panel muestra solo las opciones de portada
   const onCover = state.previewPage === "cover";
@@ -36,7 +41,11 @@ function updatePreview() {
 
   const fn = { cover: drawCover, index: drawContents, page: drawPage }[state.previewPage];
   const pv = document.getElementById("preview");
-  const maxW = Math.min(pv.parentElement.clientWidth || 600, window.innerHeight * 0.74 * P.wMm / P.hMm);
+  // Tamaño de la hoja: en horizontal ocupa el alto de la pantalla; en vertical arriba,
+  // grande, y al tocarla se agranda todavía más.
+  const stacked = window.matchMedia(STACKED).matches;
+  const maxH = stacked ? window.innerHeight * (bigPreview ? 0.84 : 0.52) : window.innerHeight - 200;
+  const maxW = Math.max(120, Math.min((pv.parentElement.clientWidth || 600) - 16, maxH * P.wMm / P.hMm));
   const dpr = window.devicePixelRatio || 1;
   const small = render(fn, o, maxW * dpr);
   pv.width = small.width; pv.height = small.height; pv.style.width = maxW + "px";
