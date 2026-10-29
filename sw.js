@@ -1,9 +1,9 @@
 // Service worker: guarda la app en la tablet para que funcione sin internet.
 // Sube VERSION cada vez que publiques cambios, así la tablet descarga la nueva.
-const VERSION = "plantillas-v7";
+const VERSION = "plantillas-v8";
 const FILES = [
   "./", "./index.html", "./manifest.json", "./css/styles.css",
-  "./js/data.js", "./js/geometry.js", "./js/font.js", "./js/text.js",
+  "./js/theme.js", "./js/data.js", "./js/geometry.js", "./js/font.js", "./js/text.js",
   "./js/draw.js", "./js/preview.js", "./js/pdf.js", "./js/app.js",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png",
 ];

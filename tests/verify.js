@@ -270,6 +270,15 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   ok('"Volver a la hoja" regresa al panel de la hoja', ui.back);
   ok('La opción de margen se esconde en En blanco y aparece en Cornell', ui.noMarginCornell && ui.marginLined);
 
+  const th = await p.evaluate(() => {
+    const bg = () => getComputedStyle(document.body).backgroundColor;
+    const a = document.documentElement.dataset.theme, b0 = bg();
+    document.getElementById('themeBtn').click(); const b = document.documentElement.dataset.theme, b1 = bg();
+    let saved = null; try { saved = localStorage.getItem('uiTheme'); } catch (e) {}
+    document.getElementById('themeBtn').click();
+    return { ok: a !== b && b0 !== b1 && saved === b && document.documentElement.dataset.theme === a };
+  });
+  ok('El botón de tema cambia entre claro y oscuro y lo recuerda', th.ok);
   ok('La política de seguridad (CSP) no bloquea nada de la app', !csp.length, csp.slice(0, 3).join(' | '));
   ok('Cero errores en la consola durante todas las pruebas', !errs.length, errs.slice(0, 3).join(' | '));
   await b.close(); srv.close();

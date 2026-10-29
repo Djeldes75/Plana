@@ -86,8 +86,23 @@ sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
 // Número de versión (abajo del idioma): sirve para saber si ya tienes la última
-const APP_VERSION = "2.1.2";
+const APP_VERSION = "2.2.0";
 document.getElementById("ver").textContent = "v" + APP_VERSION;
+
+// Botón de tema: luna = pasar a oscuro, sol = pasar a claro
+const themeBtn = document.getElementById("themeBtn");
+function paintThemeBtn() {
+  const dark = document.documentElement.dataset.theme === "dark";
+  themeBtn.textContent = dark ? "☀" : "☾";
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#151a21" : "#3E9A86";
+}
+themeBtn.onclick = () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("uiTheme", next); } catch (e) { /* sin almacenamiento */ }
+  paintThemeBtn();
+};
+paintThemeBtn();
 
 accents();
 document.getElementById("backToPage").onclick = () => { state.previewPage = "page"; updatePreview(); window.scrollTo({ top: 0, behavior: "smooth" }); };

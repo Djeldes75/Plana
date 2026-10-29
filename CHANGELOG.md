@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0 — 2026-10-29
+- Dark theme for the app ("night blue"). Follows the tablet/PC setting until you choose; the moon/sun button remembers your choice.
+- Version number shown under the language buttons.
+- Offline mode always checks for a newer version first.
+
 ## 2.1.1 — 2026-10-29
 - Shorter help texts (orientation, continue a notebook); removed the template-language and cover-name hints.
 - Spanish: "Horizontal" instead of "Horizontal (acostada)".

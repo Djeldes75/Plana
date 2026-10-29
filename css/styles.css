@@ -6,6 +6,7 @@
   --desk-solid: #eef1f5;
   --dot: #d9dfe8;        /* puntitos del fondo */
   --paper: #ffffff;      /* tarjetas */
+  --field: #ffffff;      /* casillas para escribir */
   --ink: #24292f;        /* texto */
   --soft: #6b7280;       /* texto secundario */
   --line: #e2e7ee;       /* bordes */
@@ -67,7 +68,7 @@ main {
 /* ---------- Campos ---------- */
 select, input[type=text], input[type=number] {
   width: 100%; min-height: 48px; padding: 11px 14px; font-size: 16px; font-family: inherit;
-  border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 12px; background: var(--field); color: var(--ink);
 }
 select:focus, input:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
 .sub-label { margin-top: 14px; display: block; font-weight: 600; font-size: 15px; margin-bottom: 8px; }
@@ -138,7 +139,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 
 .dock .step { background: none; border: none; box-shadow: none; padding: 0; margin-bottom: 12px; }
 .dock .step > label:not(.check) { display: none; }
 .dock .step .hint, .dock .btns .hint { display: none; }
-.fname { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; }
+.fname { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; background: var(--field); overflow: hidden; }
 .fname input { border: none; border-radius: 0; min-height: 46px; }
 .fname input:focus { outline: none; }
 .fname:focus-within { outline: 2px solid var(--brand); outline-offset: 1px; }
@@ -190,7 +191,7 @@ button.big:active { transform: scale(.98); }
 /* idioma de la app (arriba a la derecha) */
 #appLang { background: var(--paper); border: 1px solid var(--line); border-radius: 13px; padding: 4px; gap: 4px; box-shadow: var(--shadow); }
 #appLang .chip { background: transparent; min-width: 46px; }
-#appLang .chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+#appLang .chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
 /* vertical: descargas flotando abajo, siempre a la mano */
 @media (orientation: portrait), (max-width: 999px) {
@@ -214,3 +215,24 @@ button.big:active { transform: scale(.98); }
 
 .top-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .ver { font-size: 12px; color: var(--soft); padding-right: 6px; }
+
+.top-row { display: flex; align-items: center; gap: 10px; }
+.themeBtn {
+  width: 46px; height: 46px; border-radius: 13px; border: 1px solid var(--line); background: var(--paper);
+  color: var(--ink); font-size: 20px; cursor: pointer; box-shadow: var(--shadow); font-family: inherit;
+}
+
+/* ---------- Tema oscuro: azul noche, suave para los ojos ---------- */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --desk: #151a21; --desk-solid: #151a21; --dot: #232b36;
+  --paper: #1c232d; --field: #141920; --ink: #e4e8ee; --soft: #98a3b3;
+  --line: #2b3542; --tile: #242d39;
+  --brand: #4bae97; --brand-dark: #8fd6c4; --brand-soft: #1f3833;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25);
+}
+html[data-theme="dark"] .primary { color: #0f1a17; box-shadow: 0 4px 14px rgba(75, 174, 151, .25); }
+html[data-theme="dark"] .primary:hover { background: #5cc2aa; }
+html[data-theme="dark"] .preview canvas { box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 34px rgba(0,0,0,.45); }
+html[data-theme="dark"] .sw.on, html[data-theme="dark"] .picker.on { box-shadow: 0 0 0 2.5px var(--ink); }
+html[data-theme="dark"] .themeSw { box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
