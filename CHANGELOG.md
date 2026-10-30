@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.0 - 2026-10-30
+- Date box: choose DD/MM/YYYY, MM/DD/YYYY or YYYY-MM-DD (default follows the template language), with faint guide letters for each part.
+- Language sheet: the second column is now "Translation" (Traducción / Vertimas) instead of "Meaning".
+
 ## 2.5.1 - 2026-10-29
 - Repository renamed to `Plana`; new address https://djeldes75.github.io/Plana/ (links updated).
 

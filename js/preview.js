@@ -57,6 +57,7 @@ function updatePreview() {
   document.getElementById("spacingHint").textContent = fixed ? t.h_spacing_fixed : t.h_spacing;
   document.getElementById("styleInfo").textContent = t.si[state.style];
   // Cornell ya trae su propia línea roja; la hoja en blanco no lleva margen
+  document.getElementById("dateFmtRow").style.display = o.header ? "" : "none";
   document.getElementById("marginRow").style.display = state.style === "blank" ? "none" : "flex";
   document.getElementById("deviceInfo").textContent = fill(t.dev,
     { w: (P.wMm / 10).toFixed(1), h: (P.hMm / 10).toFixed(1), pw: P.wPx, ph: P.hPx });

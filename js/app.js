@@ -22,12 +22,12 @@ function icon(name) {
   return s;
 }
 
-function chips(id, items, key, small) {
+function chips(id, items, key, small, current) {
   const box = document.getElementById(id);
   box.innerHTML = "";
   items.forEach(([value, text, dot]) => {
     const b = document.createElement("button");
-    b.className = "chip" + (small ? " small" : "") + (state[key] === value ? " on" : "");
+    b.className = "chip" + (small ? " small" : "") + ((current !== undefined ? current : state[key]) === value ? " on" : "");
     if (dot) { const s = document.createElement("span"); s.className = "themeSw"; s.style.background = dot; b.appendChild(s); }
     if (ICONS[value] && (key === "style" || key === "orient")) b.appendChild(icon(value));
     b.appendChild(document.createTextNode(text));
@@ -61,6 +61,8 @@ function buildChips() {
   chips("styles", STYLES.map(s => [s, t.st[s]]), "style");
   chips("langs", Object.entries(LANGS).map(([k, v]) => [k, v.name]), "lang");
   chips("themes", Object.keys(THEMES).map(k => [k, t.th[k], THEMES[k].paper]), "theme");
+  const ph = LANGS[state.lang].dph;
+  chips("dateFmtChips", [["dmy", `${ph.d}/${ph.m}/${ph.y}`], ["mdy", `${ph.m}/${ph.d}/${ph.y}`], ["ymd", `${ph.y}-${ph.m}-${ph.d}`]], "dateFmt", true, dateFmt());
 }
 
 function applyUI() {
@@ -85,7 +87,7 @@ const SAVE_FIELDS = { spacing: "value", header: "checked", margin: "checked", co
 const VALID = {
   device: v => DEVICES.some(d => d.id === v), style: v => STYLES.includes(v), theme: v => v in THEMES,
   accent: v => /^#[0-9a-f]{6}$/i.test(v), lang: v => v in LANGS, ui: v => v in UI,
-  orient: v => v === "portrait" || v === "landscape",
+  orient: v => v === "portrait" || v === "landscape", dateFmt: v => ["dmy", "mdy", "ymd"].includes(v),
   coverDesign: v => ["band", "frame", "block", "minimal"].includes(v), coverMode: v => v === "separate" || v === "inside",
 };
 function loadSettings() {
@@ -122,7 +124,7 @@ sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
 // Número de versión (abajo del idioma): sirve para saber si ya tienes la última
-const APP_VERSION = "2.5.0";
+const APP_VERSION = "2.6.0";
 document.getElementById("ver").textContent = "v" + APP_VERSION;
 
 // Botón de tema: luna = pasar a oscuro, sol = pasar a claro

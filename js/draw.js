@@ -126,8 +126,16 @@ function drawPage(ctx, W, H, o) {
     vline(ctx, dx, BOX_T, BOX_B);
     label(ctx, L().topic, left + 3, BOX_T + 3.6, T.text, 6.5, false);
     label(ctx, L().date, dx + 3, BOX_T + 3.6, T.text, 6.5, false);
-    label(ctx, "/", dx + 15, BOX_B - 3, T.text, 10, false);
-    label(ctx, "/", dx + 25, BOX_B - 3, T.text, 10, false);
+    // casillas de la fecha según el formato (día, mes, año) con letras guía muy suaves
+    const ph = L().dph, fmt = dateFmt(), sep = fmt === "ymd" ? "-" : "/";
+    const order = { dmy: ["d", "m", "y"], mdy: ["m", "d", "y"], ymd: ["y", "m", "d"] }[fmt];
+    const widths = { d: 10, m: 10, y: 14 };
+    let x = dx + 2;
+    order.forEach((k, i) => {
+      label(ctx, ph[k], x + widths[k] / 2, BOX_B - 1.6, T.text, 4.2, false, "center");
+      x += widths[k];
+      if (i < 2) { label(ctx, sep, x + 1, BOX_B - 3, T.text, 10, false, "center"); x += 2; }
+    });
     if (o.subject) label(ctx, o.subject.toUpperCase(), dx - 3, BOX_T + 3.6, A, 6.5, true, "right");
   }
 }

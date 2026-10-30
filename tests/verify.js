@@ -137,7 +137,7 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   });
   ok('App: ES, EN y LT tienen todos los textos', tr.uiSame && !tr.empty.length, tr.empty.join(', '));
   ok('Plantilla: ES, EN y LT tienen todos los textos', tr.tlSame);
-  const vec = await p.evaluate(() => Object.values(LANGS).flatMap(o => Object.values(o)).filter(t => !canVector(t.toUpperCase()) || !canVector(t)));
+  const vec = await p.evaluate(() => Object.values(LANGS).flatMap(o => Object.values(o).flatMap(v => typeof v === 'object' ? Object.values(v) : [v])).filter(t => !canVector(t.toUpperCase()) || !canVector(t)));
   ok('Todos los textos de la plantilla se dibujan como vector (sin respaldo)', !vec.length, vec.join(', '));
   for (const lang of ['ES', 'EN', 'LT']) {
     await p.click(`#appLang >> text=${lang}`);
@@ -295,6 +295,10 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   await p.evaluate(() => document.getElementById('resetBtn').click()); await p.waitForTimeout(700);
   const reset = await p.evaluate(() => ({ style: state.style }));
   ok('El botón "Volver a las opciones de fábrica" funciona', reset.style === 'lined', JSON.stringify(reset));
+  const df = await p.evaluate(() => { const r = []; for (const l of ['es','en','lt']) { state.lang = l; state.dateFmt = null; r.push(dateFmt()); }
+    state.dateFmt = 'ymd'; state.lang = 'es'; const chosen = dateFmt(); state.dateFmt = null; state.lang = 'en'; buildChips(); updatePreview();
+    return { r, chosen, chips: document.querySelectorAll('#dateFmtChips button').length }; });
+  ok('Formato de fecha: según el idioma (ES día/mes, EN mes/día, LT año-mes-día) y se puede cambiar', df.r.join() === 'dmy,mdy,ymd' && df.chosen === 'ymd' && df.chips === 3, JSON.stringify(df));
   ok('La política de seguridad (CSP) no bloquea nada de la app', !csp.length, csp.slice(0, 3).join(' | '));
   ok('Cero errores en la consola durante todas las pruebas', !errs.length, errs.slice(0, 3).join(' | '));
   await b.close(); srv.close();

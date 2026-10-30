@@ -39,13 +39,13 @@ const ACCENTS = ["#8E99A6", "#C79A1E", "#4F7CAC", "#3E9A86", "#8A6BB8", "#D2697A
 // Textos impresos EN LA HOJA (idioma de la plantilla)
 const LANGS = {
   en: { name: "English", topic: "TOPIC", date: "DATE", key: "KEY IDEAS", key2: "& QUESTIONS", notes: "NOTES",
-        summary: "SUMMARY — in my own words", words: "NEW WORDS", word: "Word", meaning: "Meaning",
+        summary: "SUMMARY — in my own words", words: "NEW WORDS", word: "Word", meaning: "Translation", dph: { d: "DD", m: "MM", y: "YYYY" },
         phrases: "PHRASES TO PRACTISE", contents: "Contents", page: "PAGE", yourName: "Name", notebook: "Notebook" },
   es: { name: "Español", topic: "TEMA", date: "FECHA", key: "IDEAS CLAVE", key2: "Y PREGUNTAS", notes: "APUNTES",
-        summary: "RESUMEN — con mis palabras", words: "PALABRAS NUEVAS", word: "Palabra", meaning: "Significado",
+        summary: "RESUMEN — con mis palabras", words: "PALABRAS NUEVAS", word: "Palabra", meaning: "Traducción", dph: { d: "DD", m: "MM", y: "AAAA" },
         phrases: "FRASES PARA PRACTICAR", contents: "Índice", page: "PÁG.", yourName: "Nombre", notebook: "Cuaderno" },
   lt: { name: "Lietuvių", topic: "TEMA", date: "DATA", key: "PAGRINDINĖS MINTYS", key2: "IR KLAUSIMAI", notes: "UŽRAŠAI",
-        summary: "SANTRAUKA — savais žodžiais", words: "NAUJI ŽODŽIAI", word: "Žodis", meaning: "Reikšmė",
+        summary: "SANTRAUKA — savais žodžiais", words: "NAUJI ŽODŽIAI", word: "Žodis", meaning: "Vertimas", dph: { d: "DD", m: "MM", y: "MMMM" },
         phrases: "FRAZĖS PRAKTIKAI", contents: "Turinys", page: "PSL.", yourName: "Vardas", notebook: "Sąsiuvinis" },
 };
 
@@ -68,7 +68,7 @@ const UI = {
     s_paper: "Color del papel", th: { light: "Blanco", sepia: "Sepia", gray: "Gris", dark: "Oscuro" },
     h_paper: "Sepia parece papel de libro; gris y oscuro cansan menos la vista de noche. En oscuro, usa el lápiz en blanco.",
     s_accent: "Color de los detalles", h_accent: "Recuadro de arriba, títulos y portada. El círculo de colores te deja elegir cualquier color.",
-    s_extras: "Extras", o_header: "Recuadro arriba para escribir tema y fecha", ph_subject: "Nombre de la materia (opcional)",
+    s_extras: "Extras", o_header: "Recuadro arriba para escribir tema y fecha", s_datefmt: "Formato de la fecha", ph_subject: "Nombre de la materia (opcional)",
     o_margin: "Línea roja de margen a la izquierda", o_cover: "Portada al inicio", o_index: "Página de índice al inicio",
     s_pages: "Número de hojas para escribir",
     s_fname: "Nombre del archivo", h_fname: "Puedes cambiarlo. Bórralo para volver al nombre automático.",
@@ -111,7 +111,7 @@ const UI = {
     s_paper: "Paper color", th: { light: "White", sepia: "Sepia", gray: "Gray", dark: "Dark" },
     h_paper: "Sepia looks like book paper; gray and dark are easier on the eyes at night. On dark, use a white pen.",
     s_accent: "Accent color", h_accent: "Top box, titles and cover. The rainbow circle lets you pick any color.",
-    s_extras: "Extras", o_header: "Box at the top for topic and date", ph_subject: "Subject name (optional)",
+    s_extras: "Extras", o_header: "Box at the top for topic and date", s_datefmt: "Date format", ph_subject: "Subject name (optional)",
     o_margin: "Red margin line on the left", o_cover: "Cover page at the start", o_index: "Contents page at the start",
     s_pages: "Number of writing pages",
     s_fname: "File name", h_fname: "You can change it. Clear it to go back to the automatic name.",
@@ -154,7 +154,7 @@ const UI = {
     s_paper: "Popieriaus spalva", th: { light: "Balta", sepia: "Sepija", gray: "Pilka", dark: "Tamsi" },
     h_paper: "Sepija primena knygos popierių; pilka ir tamsi mažiau vargina akis vakare. Tamsiame lape rašykite baltu rašikliu.",
     s_accent: "Detalių spalva", h_accent: "Viršutinis rėmelis, pavadinimai ir viršelis. Spalvotas apskritimas leidžia pasirinkti bet kokią spalvą.",
-    s_extras: "Papildomai", o_header: "Rėmelis viršuje temai ir datai", ph_subject: "Dalyko pavadinimas (nebūtina)",
+    s_extras: "Papildomai", o_header: "Rėmelis viršuje temai ir datai", s_datefmt: "Datos formatas", ph_subject: "Dalyko pavadinimas (nebūtina)",
     o_margin: "Raudona paraštės linija kairėje", o_cover: "Viršelis pradžioje", o_index: "Turinio puslapis pradžioje",
     s_pages: "Rašymo lapų skaičius",
     s_fname: "Failo pavadinimas", h_fname: "Galite pakeisti. Ištrynus grįžta automatinis pavadinimas.",
@@ -188,7 +188,10 @@ const startLang = UI[nav] ? nav : "en";
 
 // Lo que la persona ha elegido
 const state = { device: "s10plus", style: "lined", theme: "light", accent: ACCENTS[1],
-                lang: startLang, ui: startLang, orient: "portrait", previewPage: "page", fileEdited: false, coverDesign: "band", coverMode: "separate" };
+                lang: startLang, ui: startLang, orient: "portrait", previewPage: "page", fileEdited: false, coverDesign: "band", coverMode: "separate", dateFmt: null };
+// Formato de la fecha: si no eliges, usa el del idioma de la plantilla
+const DATE_DEFAULT = { es: "dmy", en: "mdy", lt: "ymd" };
+const dateFmt = () => state.dateFmt || DATE_DEFAULT[state.lang];
 const L = () => LANGS[state.lang];
 const T = () => UI[state.ui];
 
