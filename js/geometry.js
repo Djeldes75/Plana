@@ -19,7 +19,7 @@ function pageSize() {
   return { wMm, hMm, wPx, hPx };
 }
 
-const MAX_PAGES = 1000;   // hojas por PDF (las páginas comparten plantilla, así que 1000 pesa poco)
+const MAX_PAGES = 9999;   // hojas por PDF (las páginas comparten plantilla: 9999 hojas pesan unos 8 MB)
 function options() {
   const v = id => document.getElementById(id);
   return {

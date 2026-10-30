@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.7.1 - 2026-10-30
+- Up to 9999 writing pages per PDF (was 1000). 9999 pages is about 8 MB.
+
 ## 2.7.0 - 2026-10-30
 - Up to 1000 writing pages per PDF (was 100). Pages share one template, so 1000 pages is still only about 0.7 MB.
 - If you type a number out of range, the field now corrects itself so you see how many pages you will get.

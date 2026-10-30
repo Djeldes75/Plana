@@ -123,7 +123,7 @@ sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
 // Número de versión (abajo del idioma): sirve para saber si ya tienes la última
-const APP_VERSION = "2.7.0";
+const APP_VERSION = "2.7.1";
 document.getElementById("ver").textContent = "v" + APP_VERSION;
 
 // Botón de tema: luna = pasar a oscuro, sol = pasar a claro
