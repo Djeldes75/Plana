@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.6.2 - 2026-10-30
+- The date format is now fixed to the official one of each template language (Spanish DD/MM/YYYY, English US MM/DD/YYYY, Lithuanian YYYY-MM-DD); the option was removed.
+
 ## 2.6.1 - 2026-10-30
 - Lithuanian date box: year guide shows YYYY (YYYY-MM-DD), not MMMM, which was easy to confuse with the month.
 

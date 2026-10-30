@@ -295,10 +295,9 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   await p.evaluate(() => document.getElementById('resetBtn').click()); await p.waitForTimeout(700);
   const reset = await p.evaluate(() => ({ style: state.style }));
   ok('El botón "Volver a las opciones de fábrica" funciona', reset.style === 'lined', JSON.stringify(reset));
-  const df = await p.evaluate(() => { const r = []; for (const l of ['es','en','lt']) { state.lang = l; state.dateFmt = null; r.push(dateFmt()); }
-    state.dateFmt = 'ymd'; state.lang = 'es'; const chosen = dateFmt(); state.dateFmt = null; state.lang = 'en'; buildChips(); updatePreview();
-    return { r, chosen, chips: document.querySelectorAll('#dateFmtChips button').length }; });
-  ok('Formato de fecha: según el idioma (ES día/mes, EN mes/día, LT año-mes-día) y se puede cambiar', df.r.join() === 'dmy,mdy,ymd' && df.chosen === 'ymd' && df.chips === 3, JSON.stringify(df));
+  const df = await p.evaluate(() => { const r = []; for (const l of ['es','en','lt']) { state.lang = l; r.push(dateFmt()); }
+    state.lang = 'en'; buildChips(); updatePreview(); return { r, ui: !!document.getElementById('dateFmtChips') }; });
+  ok('Formato de fecha oficial y fijo por idioma (ES día/mes/año, EN mes/día/año, LT año-mes-día)', df.r.join() === 'dmy,mdy,ymd' && !df.ui, JSON.stringify(df));
   ok('La política de seguridad (CSP) no bloquea nada de la app', !csp.length, csp.slice(0, 3).join(' | '));
   ok('Cero errores en la consola durante todas las pruebas', !errs.length, errs.slice(0, 3).join(' | '));
   await b.close(); srv.close();
