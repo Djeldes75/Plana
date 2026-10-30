@@ -45,7 +45,7 @@ const LANGS = {
         summary: "RESUMEN — con mis palabras", words: "PALABRAS NUEVAS", word: "Palabra", meaning: "Traducción", dph: { d: "DD", m: "MM", y: "AAAA" },
         phrases: "FRASES PARA PRACTICAR", contents: "Índice", page: "PÁG.", yourName: "Nombre", notebook: "Cuaderno" },
   lt: { name: "Lietuvių", topic: "TEMA", date: "DATA", key: "PAGRINDINĖS MINTYS", key2: "IR KLAUSIMAI", notes: "UŽRAŠAI",
-        summary: "SANTRAUKA — savais žodžiais", words: "NAUJI ŽODŽIAI", word: "Žodis", meaning: "Vertimas", dph: { d: "DD", m: "MM", y: "MMMM" },
+        summary: "SANTRAUKA — savais žodžiais", words: "NAUJI ŽODŽIAI", word: "Žodis", meaning: "Vertimas", dph: { d: "DD", m: "MM", y: "YYYY" },
         phrases: "FRAZĖS PRAKTIKAI", contents: "Turinys", page: "PSL.", yourName: "Vardas", notebook: "Sąsiuvinis" },
 };
 

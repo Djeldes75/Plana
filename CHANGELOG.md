@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.6.1 - 2026-10-30
+- Lithuanian date box: year guide shows YYYY (YYYY-MM-DD), not MMMM, which was easy to confuse with the month.
+
 ## 2.6.0 - 2026-10-30
 - Date box: choose DD/MM/YYYY, MM/DD/YYYY or YYYY-MM-DD (default follows the template language), with faint guide letters for each part.
 - Language sheet: the second column is now "Translation" (Traducción / Vertimas) instead of "Meaning".
