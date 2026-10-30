@@ -123,7 +123,7 @@ sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
 // Número de versión (abajo del idioma): sirve para saber si ya tienes la última
-const APP_VERSION = "2.6.2";
+const APP_VERSION = "2.7.0";
 document.getElementById("ver").textContent = "v" + APP_VERSION;
 
 // Botón de tema: luna = pasar a oscuro, sol = pasar a claro
@@ -150,6 +150,12 @@ document.getElementById("cover").addEventListener("change", e => { if (e.target.
 // si la persona escribe su propio nombre de archivo, lo respetamos; si lo borra, vuelve el automático
 document.getElementById("fname").addEventListener("input", e => { state.fileEdited = e.target.value.trim() !== ""; });
 document.getElementById("fname").addEventListener("blur", () => { if (!state.fileEdited) updatePreview(); });
+// si escribe un número fuera de rango, lo corregimos en el campo para que vea cuántas hojas saldrán
+["pages", "startNum"].forEach(id => document.getElementById(id).addEventListener("change", e => {
+  const el = e.target, raw = el.value.trim(); if (raw === "") return;
+  const n = parseInt(raw), lo = +el.min, hi = +el.max, fixed = Math.max(lo, Math.min(hi, isNaN(n) ? lo : n));
+  if (String(fixed) !== raw) { el.value = fixed; updatePreview(); }
+}));
 document.getElementById("dlPdf").onclick = makePdf;
 document.getElementById("dlPng").onclick = makePng;
 document.getElementById("dlCover").onclick = makeCoverPng;

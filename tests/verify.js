@@ -203,6 +203,11 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   const contrast = await p.evaluate(() => [onColor('#FFE600'), onColor('#1A237E')]);
   ok('Portada Bloque: texto oscuro en color claro y blanco en color oscuro', contrast[0] === '#222222' && contrast[1] === '#FFFFFF', contrast.join(' / '));
 
+  const clamp = await p.evaluate(() => { const el = document.getElementById('pages'); const r = [];
+    for (const v of ['300', '1000', '1500', '0']) { el.value = v; el.dispatchEvent(new Event('change')); r.push(el.value + '→' + options().pages); }
+    el.value = '60'; el.dispatchEvent(new Event('change')); return r; });
+  ok('Hojas: acepta hasta 1000 y corrige en el campo lo que se pasa (' + clamp.join(', ') + ')', clamp.join() === '300→300,1000→1000,1000→1000,1→1', clamp.join());
+
   // ---------- 9. PDFs reales: válidos, páginas y tamaño ----------
   const cases = [
     { dev: 's10plus', ori: 'portrait', st: 'lined', th: 'light', cover: false, index: false, pages: 60, expect: 60 },
@@ -211,6 +216,7 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
     { dev: 's11', ori: 'portrait', st: 'language', th: 'sepia', cover: true, mode: 'inside', index: false, pages: 1, expect: 2 },
     { dev: 's11', ori: 'portrait', st: 'language', th: 'sepia', cover: true, mode: 'separate', index: false, pages: 1, expect: 1 },
     { dev: 'a4', ori: 'portrait', st: 'dotted', th: 'gray', cover: false, index: true, pages: 100, expect: 101 },
+    { dev: 's10plus', ori: 'portrait', st: 'lined', th: 'light', cover: false, index: false, pages: 1000, expect: 1000 },
     { dev: 's10plus', ori: 'portrait', st: 'language', th: 'light', cover: false, index: false, pages: 20, start: 61, expect: 20, lastNum: 80 },
   ];
   for (const c of cases) {

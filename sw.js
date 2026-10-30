@@ -1,6 +1,6 @@
 // Service worker: guarda la app en la tablet para que funcione sin internet.
 // Sube VERSION cada vez que publiques cambios, así la tablet descarga la nueva.
-const VERSION = "plana-v14";
+const VERSION = "plana-v15";
 const FILES = [
   "./", "./index.html", "./manifest.json", "./css/styles.css",
   "./js/theme.js", "./js/data.js", "./js/geometry.js", "./js/font.js", "./js/text.js",

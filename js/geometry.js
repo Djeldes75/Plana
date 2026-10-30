@@ -19,6 +19,7 @@ function pageSize() {
   return { wMm, hMm, wPx, hPx };
 }
 
+const MAX_PAGES = 1000;   // hojas por PDF (las páginas comparten plantilla, así que 1000 pesa poco)
 function options() {
   const v = id => document.getElementById(id);
   return {
@@ -28,7 +29,7 @@ function options() {
     margin: v("margin").checked,
     cover: v("cover").checked,
     index: v("index").checked,
-    pages: Math.max(1, Math.min(100, parseInt(v("pages").value) || 1)),
+    pages: Math.max(1, Math.min(MAX_PAGES, parseInt(v("pages").value) || 1)),
     startNum: Math.max(0, Math.min(9999, parseInt(v("startNum").value) || 0)),   // 0 = automático
     coverTitle: v("coverTitle").value.trim(),
     coverSub: v("coverSub").value.trim(),

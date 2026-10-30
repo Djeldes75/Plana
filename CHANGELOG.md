@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.7.0 - 2026-10-30
+- Up to 1000 writing pages per PDF (was 100). Pages share one template, so 1000 pages is still only about 0.7 MB.
+- If you type a number out of range, the field now corrects itself so you see how many pages you will get.
+
 ## 2.6.2 - 2026-10-30
 - The date format is now fixed to the official one of each template language (Spanish DD/MM/YYYY, English US MM/DD/YYYY, Lithuanian YYYY-MM-DD); the option was removed.
 
