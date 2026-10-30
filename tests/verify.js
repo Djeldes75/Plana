@@ -256,6 +256,15 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
   await dc.saveAs('/tmp/verify-cover.png');
   const cdim = execSync(`python3 -c "from PIL import Image; print(*Image.open('/tmp/verify-cover.png').size)"`).toString().trim();
   ok('Portada aparte: PNG de 1752 × 2800 llamado Lituano_Lined_Cover.png', cdim === '1752 2800' && dc.suggestedFilename() === 'Lituano_Lined_Cover.png', cdim + ' ' + dc.suggestedFilename());
+  const [dcp] = await Promise.all([p.waitForEvent('download'), p.click('#dlCoverPdf')]);
+  await dcp.saveAs('/tmp/verify-cover.pdf');
+  const cinfo = execSync('pdfinfo /tmp/verify-cover.pdf').toString();
+  const cP = await p.evaluate(() => pageSize());
+  const [cw, ch] = cinfo.match(/Page size:\s+([\d.]+) x ([\d.]+)/).slice(1).map(Number);
+  let cchk = ''; try { cchk = execSync('qpdf --check /tmp/verify-cover.pdf 2>&1').toString(); } catch (e) { cchk = e.stdout.toString(); }
+  ok('Portada aparte en PDF: válida, 1 página, tamaño de la tablet, llamada Lituano_Lined_Cover.pdf',
+     /Pages:\s+1\n/.test(cinfo) && Math.abs(cw / 72 * 25.4 - cP.wMm) < 0.2 && Math.abs(ch / 72 * 25.4 - cP.hMm) < 0.2 && /No syntax/.test(cchk) && dcp.suggestedFilename() === 'Lituano_Lined_Cover.pdf',
+     dcp.suggestedFilename() + ' ' + cinfo.match(/Pages:\s+\d+/));
   await p.evaluate(() => { document.getElementById('subject').value = ''; document.getElementById('cover').checked = false; state.previewPage = 'page'; updatePreview(); });
 
   // ---------- 11. Interfaz: pestañas y panel de portada ----------

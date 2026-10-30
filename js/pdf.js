@@ -193,8 +193,14 @@ async function makePdf() {
   await save(fileName("pdf"), await buildVectorPdf(P.wMm, P.hMm, templates, pages));
 }
 
-// Portada como imagen aparte, a la resolución exacta de la tablet
-function coverName() { return fileName("png").replace(/\.png$/, "") + "_Cover.png"; }
+// Portada aparte: en PDF (vectorial, se importa como página en Samsung Notes) o como imagen
+function coverName(ext = "png") { return fileName("png").replace(/\.png$/, "") + "_Cover." + ext; }
+async function makeCoverPdf() {
+  msg(T().making);
+  const P = pageSize();
+  const templates = { cover: vectorPage(drawCover, options()) };
+  await save(coverName("pdf"), await buildVectorPdf(P.wMm, P.hMm, templates, [{ tpl: "cover", number: null }]));
+}
 async function makeCoverPng() {
   const c = render(drawCover, options());
   c.toBlob(b => save(coverName(), b), "image/png");

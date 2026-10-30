@@ -123,7 +123,7 @@ sel.value = state.device;
 sel.onchange = () => { state.device = sel.value; updatePreview(); };
 
 // Número de versión (abajo del idioma): sirve para saber si ya tienes la última
-const APP_VERSION = "2.7.1";
+const APP_VERSION = "2.7.2";
 document.getElementById("ver").textContent = "v" + APP_VERSION;
 
 // Botón de tema: luna = pasar a oscuro, sol = pasar a claro
@@ -159,6 +159,7 @@ document.getElementById("fname").addEventListener("blur", () => { if (!state.fil
 document.getElementById("dlPdf").onclick = makePdf;
 document.getElementById("dlPng").onclick = makePng;
 document.getElementById("dlCover").onclick = makeCoverPng;
+document.getElementById("dlCoverPdf").onclick = makeCoverPdf;
 window.addEventListener("resize", updatePreview);
 // En vertical: tocar la hoja la agranda o la achica
 document.getElementById("preview").onclick = () => {
@@ -176,5 +177,12 @@ if (window.claude && window.claude.use) {
 
 // App instalable: registra el service worker (solo en https y fuera de marcos, p. ej. GitHub Pages)
 if ("serviceWorker" in navigator && location.protocol === "https:" && window.top === window) {
-  navigator.serviceWorker.register("sw.js").catch(() => {});
+  // si ya había una versión guardada y llega una nueva, recargamos una vez para usarla de inmediato
+  const hadSw = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => { if (hadSw && !reloaded) { reloaded = true; location.reload(); } });
+  navigator.serviceWorker.register("sw.js").then(reg => {
+    // al volver a la app (pestaña o app instalada), busca si hay versión nueva
+    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") reg.update().catch(() => {}); });
+  }).catch(() => {});
 }

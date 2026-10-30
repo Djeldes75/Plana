@@ -1,6 +1,6 @@
 {
   "name": "plana",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "private": true,
   "description": "Notebook templates (PDF/PNG) for Samsung Notes and other note apps. Runs entirely in the browser.",
   "license": "MIT",

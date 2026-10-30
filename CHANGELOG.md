@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.0 - 2026-10-30
+- Separate cover can now be downloaded as a one-page vector PDF (best for Samsung Notes, where it imports as a real page), as well as PNG.
+
+## 2.7.2 - 2026-10-30
+- The app now updates itself: when a new version is published it reloads once to use it, and it checks for updates every time you come back to it.
+
 ## 2.7.1 - 2026-10-30
 - Up to 9999 writing pages per PDF (was 1000). 9999 pages is about 8 MB.
 

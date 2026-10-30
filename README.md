@@ -39,7 +39,7 @@ imported into Samsung Notes fills the screen edge to edge and the line spacing i
 | **6 sheet styles** | Lined, grid, dotted, blank, Cornell (cues + notes + summary) and language (notes + new words + phrases) |
 | **Real tablet sizes** | Galaxy Tab S9 / S9+ / S9 Ultra, S10+ / S10 Ultra, S11 / S11 Ultra, S12+ / S12 Ultra, and A4 - portrait or landscape |
 | **Your look** | White, sepia, gray or dark paper; any accent colour; line spacing from 5 to 12 mm |
-| **Full notebooks** | Optional cover (4 designs), contents page and page numbers that can start at any number to continue a notebook |
+| **Full notebooks** | Optional cover (4 designs) inside the PDF or as its own PDF/PNG, contents page, up to 9999 pages, and page numbers that can start at any number to continue a notebook |
 | **Sharp at any zoom** | Hand-written vector PDF with vector text (Inter); single-page PNG export too |
 | **3 languages** | Interface and printed labels in English, Español and Lietuvių |
 | **Comfortable** | Light and dark theme, big touch targets for the S Pen, remembers your choices |
