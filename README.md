@@ -22,7 +22,7 @@
 <br>
 
 <div align="center">
-<img src="docs/demo.gif" alt="Demo: switching sheet styles, paper colour, accent, spacing, template language and dark theme" width="900">
+<img src="docs/demo.webp" alt="Demo: switching sheet styles, paper colour, accent, spacing, template language and dark theme" width="900">
 <br><sub>Pick a style, see it live, download.</sub>
 </div>
 
