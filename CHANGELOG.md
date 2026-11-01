@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.9.0 - 2026-11-01
+- Language sheet: new option to remove the "Practice sentences" box; the lines and the new-words column then run to the bottom of the page.
+
 ## 2.8.0 - 2026-10-30
 - Separate cover can now be downloaded as a one-page vector PDF (best for Samsung Notes, where it imports as a real page), as well as PNG.
 

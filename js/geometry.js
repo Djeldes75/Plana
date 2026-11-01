@@ -27,6 +27,7 @@ function options() {
     header: v("header").checked,
     subject: v("subject").value.trim(),
     margin: v("margin").checked,
+    phrases: v("phrases").checked,
     cover: v("cover").checked,
     index: v("index").checked,
     pages: Math.max(1, Math.min(MAX_PAGES, parseInt(v("pages").value) || 1)),

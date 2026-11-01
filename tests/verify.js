@@ -208,6 +208,28 @@ const ok = (name, pass, detail = '') => results.push({ name, pass, detail });
     el.value = '60'; el.dispatchEvent(new Event('change')); return r; });
   ok('Hojas: acepta hasta 9999 y corrige en el campo lo que se pasa (' + clamp.join(', ') + ')', clamp.join() === '300→300,1000→1000,9999→9999,9999→9999,1→1', clamp.join());
 
+  // Idiomas: la caja «Frases para practicar» se puede quitar
+  const phr = await p.evaluate(() => { const r = {}; state.style = 'lined'; updatePreview();
+    r.hiddenLined = getComputedStyle(document.getElementById('phrasesRow')).display === 'none';
+    state.style = 'language'; updatePreview(); r.shownLang = getComputedStyle(document.getElementById('phrasesRow')).display !== 'none';
+    state.lang = 'es'; document.getElementById('phrases').checked = false; updatePreview(); r.optOff = options().phrases === false;
+    document.getElementById('phrases').checked = true; updatePreview(); return r; });
+  ok('Idiomas: la opción «Frases para practicar» solo aparece en Idiomas', phr.hiddenLined && phr.shownLang && phr.optOff, JSON.stringify(phr));
+  // en la hoja se busca el color de acento (línea y título de la caja) en la parte de abajo, a la izquierda de «Palabras nuevas»
+  const accentLow = await p.evaluate(() => {
+    const out = {};
+    for (const on of [true, false]) {
+      state.style = 'language'; state.device = 's10plus'; state.orient = 'portrait'; document.getElementById('phrases').checked = on; updatePreview();
+      const c = render(drawPage, options()), g = c.getContext('2d'), W = c.width, H = c.height;
+      const d = g.getImageData(0, Math.round(H * 0.8), Math.round(W * 0.55), Math.round(H * 0.2) - 2).data;
+      const a = state.accent.match(/\w\w/g).map(h => parseInt(h, 16)); let n = 0;
+      for (let i = 0; i < d.length; i += 4) if (Math.abs(d[i] - a[0]) < 40 && Math.abs(d[i + 1] - a[1]) < 40 && Math.abs(d[i + 2] - a[2]) < 40) n++;
+      out[on] = n;
+    }
+    return out; });
+  ok('  └ Con la caja se dibuja «Frases para practicar»; sin ella, los renglones llegan hasta abajo', accentLow.true > 200 && accentLow.false === 0, JSON.stringify(accentLow));
+  await p.evaluate(() => { document.getElementById('phrases').checked = true; document.getElementById('pages').value = '60'; state.style = 'lined'; updatePreview(); });
+
   // ---------- 9. PDFs reales: válidos, páginas y tamaño ----------
   const cases = [
     { dev: 's10plus', ori: 'portrait', st: 'lined', th: 'light', cover: false, index: false, pages: 60, expect: 60 },

@@ -81,7 +81,7 @@ function applyUI() {
 // Se guardan en la tablet (localStorage) cada vez que cambias algo, y se cargan al abrir.
 // No se guardan las cosas de cada cuaderno: tema, título y subtítulo de la portada, número inicial y nombre del archivo.
 const SAVE_KEY = "settings";
-const SAVE_FIELDS = { spacing: "value", header: "checked", margin: "checked", cover: "checked", index: "checked",
+const SAVE_FIELDS = { spacing: "value", header: "checked", margin: "checked", phrases: "checked", cover: "checked", index: "checked",
                       pages: "value", coverName: "checked", coverNameText: "value", coverYear: "checked" };
 const VALID = {
   device: v => DEVICES.some(d => d.id === v), style: v => STYLES.includes(v), theme: v => v in THEMES,
@@ -145,7 +145,7 @@ accents();
 document.getElementById("backToPage").onclick = () => { state.previewPage = "page"; updatePreview(); window.scrollTo({ top: 0, behavior: "smooth" }); };
 // al marcar "Portada", la mostramos de una vez para que se vean sus opciones
 document.getElementById("cover").addEventListener("change", e => { if (e.target.checked) { state.previewPage = "cover"; updatePreview(); } });
-["spacing", "header", "subject", "margin", "cover", "index", "pages", "startNum", "coverTitle", "coverSub", "coverName", "coverYear", "coverNameText", "coverYearText"].forEach(id =>
+["spacing", "header", "subject", "margin", "phrases", "cover", "index", "pages", "startNum", "coverTitle", "coverSub", "coverName", "coverYear", "coverNameText", "coverYearText"].forEach(id =>
   document.getElementById(id).addEventListener("input", updatePreview));
 // si la persona escribe su propio nombre de archivo, lo respetamos; si lo borra, vuelve el automático
 document.getElementById("fname").addEventListener("input", e => { state.fileEdited = e.target.value.trim() !== ""; });

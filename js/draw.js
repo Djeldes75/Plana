@@ -79,7 +79,9 @@ function drawPage(ctx, W, H, o) {
     // Se arma DE ABAJO HACIA ARRIBA para que todo cuadre:
     // la caja de abajo tiene siempre los mismos renglones y el último cae en el borde;
     // lo que sobra queda bajo el recuadro de tema y fecha.
-    const L2 = layoutFromBottom(TOP, BOTTOM, S, st === "cornell" ? 4 : 3);
+    // Idiomas sin la caja de frases: los renglones y la columna de palabras llegan hasta abajo
+    const noBox = st === "language" && !o.phrases;
+    const L2 = noBox ? { top: TOP, sep: lastRow(TOP, BOTTOM, S, HEAD), last: null } : layoutFromBottom(TOP, BOTTOM, S, st === "cornell" ? 4 : 3);
     const top = L2.top, sep = L2.sep;
     if (st === "cornell") {
       const cue = Math.min(46, W * 0.28);
@@ -91,19 +93,19 @@ function drawPage(ctx, W, H, o) {
       label(ctx, L().summary, o.margin ? MX + 3 : 6, sep + 4.4, A);
     } else {
       const vx = W - Math.min(62, W * 0.37);
-      ruled(ctx, T, 0, vx, top, sep - S + GAP + 0.01, S, HEAD);
+      const rb = noBox ? sep + GAP + 0.01 : sep - S + GAP + 0.01;   // hasta dónde llegan los renglones
+      ruled(ctx, T, 0, vx, top, rb, S, HEAD);
       ctx.fillStyle = T.panel; ctx.fillRect(vx, top, W - vx, sep - top);
-      ruled(ctx, T, vx, W, top, sep - S + GAP + 0.01, S, HEAD);
+      ruled(ctx, T, vx, W, top, rb, S, HEAD);
       ctx.strokeStyle = A; ctx.lineWidth = 0.8 * PT; vline(ctx, vx, top, sep);
       const half = (W - vx) / 2;
       ctx.strokeStyle = T.line; ctx.setLineDash([1.5, 1.5]); vline(ctx, vx + half, top + Math.max(S, HEAD), sep); ctx.setLineDash([]);
       label(ctx, L().words, vx + 3, top + 3.6, A);
       label(ctx, L().word, vx + 3, top + 7, T.text, 6, false);
       label(ctx, L().meaning, vx + half + 3, top + 7, T.text, 6, false);
-      ctx.strokeStyle = A; hline(ctx, 0, W, sep);
-      label(ctx, L().phrases, o.margin ? MX + 3 : 6, sep + 4.4, A);
+      if (!noBox) { ctx.strokeStyle = A; hline(ctx, 0, W, sep); label(ctx, L().phrases, o.margin ? MX + 3 : 6, sep + 4.4, A); }
     }
-    boxRows(ctx, T, 0, W, L2.last, S, st === "cornell" ? 4 : 3);
+    if (!noBox) boxRows(ctx, T, 0, W, L2.last, S, st === "cornell" ? 4 : 3);
     // Cornell: el resumen también lleva margen rojo (como las demás hojas)
     if (st === "cornell" && o.margin) { ctx.strokeStyle = T.red; ctx.lineWidth = 0.8 * PT; vline(ctx, MX, sep, H); }
   }
@@ -111,7 +113,7 @@ function drawPage(ctx, W, H, o) {
   // margen rojo
   if (o.margin && st !== "cornell" && st !== "blank") {
     const LL = st === "language" ? layoutFromBottom(TOP, BOTTOM, S, 3) : null;
-    const bottom = st === "language" ? H
+    const bottom = st === "language" ? (o.phrases ? H : lastRow(TOP, BOTTOM, S, HEAD))
                  : st === "grid" ? TOP + Math.floor((BOTTOM - TOP) / 5) * 5
                  : st === "dotted" ? TOP + Math.floor((BOTTOM - TOP) / 5) * 5
                  : lastRow(TOP, BOTTOM, S);
